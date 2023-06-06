@@ -1,0 +1,6 @@
+cht.sh-git
+dmenu2
+dxvk-bin
+joplin
+surge
+xivlauncher

@@ -1,0 +1,85 @@
+Arch Linux Maintenance
+======================
+Commands List: https://gitlab.com/eflinux/arch-maintenance-commands
+Arch Wiki Maintenance: https://wiki.archlinux.org/title/System_maintenance
+Arch Wiki Pacman: https://wiki.archlinux.org/title/Pacman/Tips_and_tricks
+
+Update mirrors
+--------------
+Arco alias: mirror (mirrora mirrora mirrord mirrors mirrorx)
+or if those are not fast enough try:
+sudo reflector -c Portugal -a 6 --sort rate --save /etc/pacman.d/mirrorlist
+
+Check keys - Once per month
+----------------------------
+Arco alias: gpg-check *** need to check this
+Arco alias: gpg-retrieve *** need to check this
+Or just use Arch Linux Tweak Tool
+
+Check failed services
+---------------------
+sytemctl --failed
+Arco alias: sysfailed ***
+
+Log files check
+---------------
+sudo journalctl -p 3 -xb
+Acro alias: jctl ***
+
+Update
+------
+First check Archlinux front page for changes - https://archlinux.org/
+Arco alias: bupskel (once per month)
+sudo pacman -Syu
+Arco alias: update ***
+Arco alias: meld (skel backup and /etc/skel/ once per month - change as needed) ***
+
+Update AUR with Paru
+--------------------
+Arco alias: upall ***
+
+Delete Pacman cache
+-------------------
+sudo pacman -Sc
+
+Delete unwanted dependencies
+----------------------------
+paru -c
+
+Delete Paru cache
+----------------
+paru -Sc
+
+Check Orphan packages
+---------------------
+pacman -Qtdq
+
+Remove Orphan packages
+----------------------
+sudo pacman -Rns $(pacman -Qtdq)
+Arco alias: cleanup ***
+
+Clean the Cache and .config
+---------------------------
+du -sh .cache (to check size first - remove if greater than 5Gb)
+rm -rf .cache/*
+
+du -sh .config/
+delete files that are no longer needed
+
+Clean the journal
+----------------- 
+du -sh /var/log/journal/ (run occasionally)
+sudo journalctl --vacuum-time-2weeks
+NOTE: change storage=volatile to auto to log otherwise logs will be in RAM and not be available after a crash or power-loss. Further - I switched to auto and still no persistant log.
+
+Check packages once per month
+-----------------------------
+pacman -Qqe > ~/Documents/Text/pkglist.txt
+***Arco alias: list > ~/Documents/Text/pkglist.txt ***
+pacman -Qqem > ~/Documents/Text/aurpkglist.txt
+***Arco alias: listaur > ~/Documents/Text/aurpkglist.txt ***
+
+Backup with rsync once per month
+--------------------------------
+rsync -auv ~ /run/media/chris/chris-backup/arcolinux-backup/
