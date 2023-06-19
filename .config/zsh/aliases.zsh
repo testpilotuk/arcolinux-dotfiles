@@ -13,14 +13,6 @@ alias reload='. ~/.zshrc'
 alias weather='/usr/bin/gnome-weather'
 alias installed="stat / | awk '/Birth: /{print \$2}'"
 
-#pacman
-alias sps='sudo pacman -S'
-alias spr='sudo pacman -R'
-alias sprs='sudo pacman -Rs'
-alias sprdd='sudo pacman -Rdd'
-alias spqo='sudo pacman -Qo'
-alias spsii='sudo pacman -Sii'
-
 # show the list of packages that need this package - depends mpv as example
 function_depends()  {
     search=$(echo "$1")
@@ -30,8 +22,6 @@ function_depends()  {
 alias depends='function_depends'
 
 #keyboard
-# alias give-me-qwerty-pt="sudo localectl set-x11-keymap pt"
-# alias give-me-qwerty-us="sudo localectl set-x11-keymap us"
 alias give-me-qwerty-pt="setxkbmap -layout pt"
 alias give-me-qwerty-us="setxkbmap -layout us"
 alias give-me-qwerty-gb="setxkbmap -layout gb"
@@ -53,7 +43,7 @@ alias whichvga="/usr/local/bin/arcolinux-which-vga"
 
 # Aliases for software managment
 # pacman
-alias pacman="sudo pacman --color auto"
+alias pacman="pacman --color auto"
 alias update="sudo pacman -Syyu"
 
 # paru as aur helper - updates everything
@@ -62,8 +52,6 @@ alias upall="paru -Syu --noconfirm"
 
 #grub update
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-#grub issue 08/2022
-alias install-grub-efi="sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi"
 
 #add new fonts
 alias update-fc='sudo fc-cache -fv'
@@ -146,12 +134,6 @@ alias fix-keyserver="[ -d ~/.gnupg ] || mkdir ~/.gnupg ; cp /etc/pacman.d/gnupg/
 
 #fixes
 alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
-alias keyfix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias key-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias keys-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fixkey="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fixkeys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fix-key="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
 alias fix-keys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
 #fix-sddm-config is no longer an alias but an application - part of ATT
 #alias fix-sddm-config="/usr/local/bin/arcolinux-fix-sddm-config"
@@ -177,25 +159,9 @@ alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
 alias btrfsfs="sudo btrfs filesystem df /"
 alias btrfsli="sudo btrfs su li / -t"
 
-#arcolinux applications
-#att is a symbolic link now
-#alias att="archlinux-tweak-tool"
-alias adt="arcolinux-desktop-trasher"
-alias abl="arcolinux-betterlockscreen"
-alias agm="arcolinux-get-mirrors"
-alias amr="arcolinux-mirrorlist-rank-info"
-alias aom="arcolinux-osbeck-as-mirror"
-alias ars="arcolinux-reflector-simple"
-alias atm="arcolinux-tellme"
-alias avs="arcolinux-vbox-share"
-alias awa="arcolinux-welcome-app"
-
 #pamac
 alias pamac-unlock="sudo rm /var/tmp/pamac/dbs/db.lock"
 
 #moving your personal files and folders from /personal to ~
 # alias personal='cp -Rf /personal/* ~'
-
-#moving your personal files and folders from /configbak to ~
-alias myConfig='cp -Rf /configbak/* ~'
 
